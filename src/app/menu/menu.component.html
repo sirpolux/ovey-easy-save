@@ -1,11 +1,10 @@
 <!-- menu.component.html -->
 <nav class="bg-white text-gray-700 py-4">
+  <div>
+
+  </div>
     <div class="container mx-auto px-4 flex justify-between items-center">
-        <div class="flex flex-col">
-            <h1 class="text-3xl font-extrabold">Ovey<span class="text-blue-700">Easy</span>Save</h1>
-            <span>Saving made easy</span>
-        </div>
-      
+       
       <div class="hidden md:flex space-x-4">
         <a routerLink="/" class="hover:underline">Home</a>
         <a *ngIf="active_tabs['signUp']" routerLink="/sign-up" class="hover:underline cursor-pointer">Signup</a>
@@ -29,6 +28,10 @@
       <a *ngIf="active_tabs['login']" routerLink="/login" class="block text-white px-4 py-2">Login</a>
       <a *ngIf="active_tabs['logout']" routerLink="/login" class="block text-white px-4 py-2">Logout</a>
       <a *ngIf="active_tabs['dashboard']" routerLink="/dashboard" class="block text-white px-4 py-2">Dashboard</a>
+    </div>
+
+    <div>
+      
     </div>
   </nav>
   
