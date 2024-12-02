@@ -1,0 +1,96 @@
+<div class="container mx-auto mt-8">
+    <!-- Page Header -->
+    <h1 class="text-3xl font-bold mb-6 text-center">Transaction Management</h1>
+    <p class="text-gray-600 text-center mb-8">
+      View and manage transactions. Use the search and sorting options below to filter the results.
+    </p>
+  
+    <!-- Search and Sort Form -->
+    <form (ngSubmit)="fetchTransactions()" class="mb-8 bg-white p-6 rounded-lg shadow-md">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Search Field -->
+        <div>
+          <label for="search" class="block text-gray-700 font-bold mb-2">Search:</label>
+          <input 
+            type="text" 
+            id="search" 
+            [(ngModel)]="search" 
+            name="search"
+            placeholder="Search by client name or card number" 
+            class="w-full border-gray-300 rounded-lg shadow-sm p-2">
+        </div>
+  
+        <!-- Sort By Field -->
+        <div>
+          <label for="sort_by" class="block text-gray-700 font-bold mb-2">Sort By:</label>
+          <select 
+            id="sort_by" 
+            [(ngModel)]="sortBy" 
+            name="sort_by" 
+            class="w-full border-gray-300 rounded-lg shadow-sm p-2">
+            <option value="" disabled selected>Select a column</option>
+            <option value="id">ID</option>
+            <option value="amount">Amount</option>
+            <option value="date_paid">Date Paid</option>
+          </select>
+        </div>
+  
+        <!-- Sort Order Field -->
+        <div>
+          <label for="sort_order" class="block text-gray-700 font-bold mb-2">Sort Order:</label>
+          <select 
+            id="sort_order" 
+            [(ngModel)]="sortOrder" 
+            name="sort_order" 
+            class="w-full border-gray-300 rounded-lg shadow-sm p-2">
+            <option value="" disabled selected>Select order</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-6 text-center">
+        <button 
+          type="submit" 
+          class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700">
+          Apply Filters
+        </button>
+      </div>
+    </form>
+  
+    <!-- Transaction Table -->
+    <table class="min-w-full border-collapse border border-gray-200">
+      <thead>
+        <tr>
+          <th class="border border-gray-200 p-2 text-left">Client Name</th>
+          <th class="border border-gray-200 p-2 text-left">Card No</th>
+          <th class="border border-gray-200 p-2 text-left">Amount</th>
+          <th class="border border-gray-200 p-2 text-left">Date Paid</th>
+          <th class="border border-gray-200 p-2 text-left">Transaction Type</th>
+          <th class="border border-gray-200 p-2 text-left">Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td class="border border-gray-200 p-2">{{ transaction.client_name }}</td>
+          <td class="border border-gray-200 p-2">{{ transaction.card_no }}</td>
+          <td class="border border-gray-200 p-2">{{ transaction.amount }}</td>
+          <td class="border border-gray-200 p-2">{{ transaction.data_paid }}</td>
+          <td class="border border-gray-200 p-2">{{ transaction.transaction_type }}</td>
+          <td class="border border-gray-200 p-2">{{ transaction.purpose }}</td>
+        </tr>
+        <tr *ngIf="transactions.length === 0">
+          <td colspan="6" class="text-center text-gray-500 py-4">
+            No transactions found. Please adjust your filters.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pagination Info -->
+    <div class="mt-6">
+      <p>Total Transactions: {{ pagination?.total }}</p>
+      <p>Page: {{ pagination?.current_page }} of {{ pagination?.last_page }}</p>
+    </div>
+  </div>
+  

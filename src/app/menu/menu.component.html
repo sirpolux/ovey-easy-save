@@ -26,8 +26,11 @@
       <a routerLink="/" class="block text-white px-4 py-2">Home</a>
       <a *ngIf="active_tabs['signUp']" routerLink="/sign-up" class="block text-white px-4 py-2">Sign up</a>
       <a *ngIf="active_tabs['login']" routerLink="/login" class="block text-white px-4 py-2">Login</a>
-      <a *ngIf="active_tabs['logout']" routerLink="/login" class="block text-white px-4 py-2">Logout</a>
-      <a *ngIf="active_tabs['dashboard']" routerLink="/dashboard" class="block text-white px-4 py-2">Dashboard</a>
+      <a *ngIf="active_tabs['loggedIn']" routerLink="/logout" class="block text-white px-4 py-2">Logout</a>
+      <a *ngIf="active_tabs['loggedIn']" routerLink="/dashboard" class="block text-white px-4 py-2">Dashboard</a>
+      <a *ngIf="active_tabs['loggedIn']" routerLink="/dashboard" class="block text-white px-4 py-2">Transactions</a>
+      <a *ngIf="active_tabs['loggedIn']" routerLink="/dashboard" class="block text-white px-4 py-2">Clients</a>
+
     </div>
 
     <div>

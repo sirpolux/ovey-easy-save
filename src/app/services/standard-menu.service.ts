@@ -8,26 +8,25 @@ export class StandardMenuService {
 
   constructor() { }
 
-
-
   static active_tabs:ActiveMenuRepresentation={
     'login':true,
     'dashboard':false,
-    'signUp':true
+    'signUp':true,
+    'transaction':false,
+    'client':false,
+    'loggedIn':false,
   };
 
-  
 
   toggleMenu(){
     const mobileMenu = document.getElementById('mobile-menu');
     if(mobileMenu){
       mobileMenu.classList.toggle('hidden');
-    
     }
   }
 
 
-  updateActiveItems(name:string, value:boolean){
+ public updateActiveItems(name:string, value:boolean){
       switch (name) {
         case 'login':
           StandardMenuService.active_tabs.login = value;
@@ -38,9 +37,18 @@ export class StandardMenuService {
         case 'signUp':
           StandardMenuService.active_tabs.signUp = value;
           break;
-          case 'logout':
-            StandardMenuService.active_tabs.logout = value;
-            break;
+        case 'logout':
+          StandardMenuService.active_tabs.logout = value;
+          break;
+        case 'transaction':
+          StandardMenuService.active_tabs.transaction=value;
+          break;
+        case 'client':
+          StandardMenuService.active_tabs.client=value;
+          break;
+        case 'loggedIn':
+          StandardMenuService.active_tabs.loggedIn = value;
+          break;
         default:
           console.warn(`No active tab found with the name ${name}`);
       }
