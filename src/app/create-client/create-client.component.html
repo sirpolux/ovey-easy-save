@@ -1,0 +1,85 @@
+<div class="max-w-4xl mx-auto p-6 bg-gray-50 shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Create a New Client</h2>
+  
+    <p class="mb-6 text-gray-600">
+      Join our <span class="text-blue-500 font-semibold">Smart Savings</span> platform today! Save effortlessly and securely with clients like you who are building a brighter financial future.
+    </p>
+  
+    <form (ngSubmit)="createClient()" class="space-y-4">
+      <!-- Name -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-600 mb-1">Name</label>
+        <input
+          id="name"
+          [(ngModel)]="client.name"
+          name="name"
+          type="text"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter client name"
+          required
+        />
+        <p *ngIf="validationErrors.name" class="text-red-500 text-sm mt-1">{{ validationErrors.name[0] }}</p>
+      </div>
+  
+      <!-- Card Number -->
+      <div>
+        <label for="card_no" class="block text-sm font-medium text-gray-600 mb-1">Card Number</label>
+        <input
+          id="card_no"
+          [(ngModel)]="client.card_no"
+          name="card_no"
+          type="text"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter card number"
+          required
+        />
+        <p *ngIf="validationErrors.card_no" class="text-red-500 text-sm mt-1">{{ validationErrors.card_no[0] }}</p>
+      </div>
+  
+      <!-- Address -->
+      <div>
+        <label for="address" class="block text-sm font-medium text-gray-600 mb-1">Address</label>
+        <input
+          id="address"
+          [(ngModel)]="client.address"
+          name="address"
+          type="text"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter address"
+          required
+        />
+      </div>
+  
+      <!-- Phone Number -->
+      <div>
+        <label for="phone_number" class="block text-sm font-medium text-gray-600 mb-1">Phone Number</label>
+        <input
+          id="phone_number"
+          [(ngModel)]="client.phone_number"
+          name="phone_number"
+          type="text"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter phone number"
+          required
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+          Create Client
+        </button>
+      </div>
+    </form>
+  
+    <!-- Success Message -->
+    <p *ngIf="successMessage" class="text-green-500 font-semibold mt-4">{{ successMessage }}</p>
+  
+    <!-- Error Message -->
+    <p *ngIf="errorMessage" class="text-red-500 font-semibold mt-4">{{ errorMessage }}</p>
+  </div>
+  
+
+  

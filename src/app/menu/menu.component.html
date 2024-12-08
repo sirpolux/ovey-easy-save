@@ -1,4 +1,4 @@
-<!-- menu.component.html -->
+<!-- menu.component.html
 <nav class="bg-white text-gray-700 py-4">
   <div>
 
@@ -21,7 +21,7 @@
       </div>
     </div>
   
-    <!-- Mobile Menu -->
+    Mobile Menu 
     <div id="mobile-menu" class="hidden md:hidden bg-blue-600">
       <a routerLink="/" class="block text-white px-4 py-2">Home</a>
       <a *ngIf="active_tabs['signUp']" routerLink="/sign-up" class="block text-white px-4 py-2">Sign up</a>
@@ -37,4 +37,51 @@
       
     </div>
   </nav>
+   -->
+
+
+
+  <header class="bg-white shadow-md fixed w-full z-10">
+    <nav class="bg-white text-gray-700 py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center space-x-4">
+          <img src="https://via.placeholder.com/50" alt="School Logo" class="h-10 w-10">
+          <span class="text-xl font-semibold">MidSchool</span>
+        </div>
   
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-4">
+          <a routerLink="/" class="hover:underline">Home</a>
+          <a *ngIf="active_tabs['signUp']" routerLink="/sign-up" class="hover:underline cursor-pointer">Signup</a>
+          <a *ngIf="active_tabs['login']" routerLink="/login" class="hover:underline">Login</a>
+          <a *ngIf="active_tabs['logout']" routerLink="/login" class="hover:underline">Logout</a>
+          <a *ngIf="active_tabs['dashboard']"  routerLink="/dashboard" class="hover:underline">Dashboard</a>
+        </div>
+  
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="focus:outline-none">
+            <svg class="w-6 h-6 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-blue-600">
+        <a routerLink="/" class="block text-white px-4 py-2">Home</a>
+        <a *ngIf="active_tabs['signUp']" routerLink="/sign-up" class="block text-white px-4 py-2">Sign up</a>
+        <a *ngIf="active_tabs['login']" routerLink="/login" class="block text-white px-4 py-2">Login</a>
+        <a *ngIf="active_tabs['loggedIn']" routerLink="/logout" class="block text-white px-4 py-2">Logout</a>
+        <a *ngIf="active_tabs['loggedIn']" routerLink="/dashboard" class="block text-white px-4 py-2">Dashboard</a>
+        <a *ngIf="active_tabs['loggedIn']" routerLink="/dashboard" class="block text-white px-4 py-2">Transactions</a>
+        <a *ngIf="active_tabs['loggedIn']" routerLink="/dashboard" class="block text-white px-4 py-2">Clients</a>
+  
+
+      </div>
+    </nav>
+  </header>
+  
+<

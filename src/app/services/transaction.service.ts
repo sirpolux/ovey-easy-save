@@ -3,22 +3,27 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BASE_URL } from '../constants';
 import { AuthService } from './auth-service';
+import { catchError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransactionService {
   private apiUrl = BASE_URL;
-  //private token = '3|wRfP2p6C4cClvbK0FOKv0aQY0QRyjcll9Wap9TB92b71dbc2';
 
-  constructor(private http: HttpClient, private authService:AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getTransactions(params: any): Observable<any> {
-    // Set Authorization header with Bearer token
+  // Method to get headers with Bearer token
+  private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();
-    const headers = new HttpHeaders({
+    return new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
+  }
+
+  getTransactions(params: any): Observable<any> {
+    const headers = this.getHeaders();
 
     // Build query parameters dynamically
     let queryParams = new HttpParams();
@@ -29,4 +34,48 @@ export class TransactionService {
     // Make GET request with headers and query params
     return this.http.get<any>(`${this.apiUrl}/transactions`, { headers, params: queryParams });
   }
+
+  fetchFilteredClientTransactions(client_id: number, page: number, startFrom?: string, endAt?: string): Observable<any> {
+    const headers = this.getHeaders();
+
+    // Build query parameters dynamically
+    let params = new HttpParams()
+      .set('client_id', client_id.toString())
+      .set('page', page.toString());
+
+    if (startFrom) params = params.set('startFrom', startFrom);
+    if (endAt) params = params.set('endAt', endAt);
+
+    // Make GET request with headers and query params
+    return this.http.get<any>(`${this.apiUrl}/transactions/client`, { headers, params });
+  }
+
+  recordTransaction(payload: any): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/transactions/card-no`, payload, { headers }).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  getClientByCardNo(card_no: string): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any>(`${BASE_URL}/clients/client-no/${card_no}`, { headers }).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+
 }

@@ -1,1 +1,63 @@
-<p>client works!</p>
+<div class="container mx-auto mt-5">
+    <h1 class="text-2xl font-bold mb-4">Clients</h1>
+  
+    <!-- Search Box -->
+    <div class="mb-4">
+      <input
+        type="text"
+        [(ngModel)]="search"
+        (keyup.enter)="onSearch()"
+        placeholder="Search clients..."
+        class="border rounded-md p-2 w-full"
+      />
+    </div>
+  
+    <!-- Clients Table -->
+    <table class="min-w-full bg-white border">
+      <thead>
+        <tr>
+          <th class="cursor-pointer" (click)="onSort('name')">Name</th>
+          <th class="cursor-pointer" (click)="onSort('card_no')">Card No</th>
+          <th class="cursor-pointer" (click)="onSort('phone_number')">Phone Number</th>
+          <th class="cursor-pointer" (click)="onSort('balance')">Balance</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.name }}</td>
+          <td>{{ client.card_no }}</td>
+          <td>{{ client.phone_number }}</td>
+          <td>{{ client.balance }}</td>
+          <td>
+            <a
+              href="javascript:void(0)"
+              class="text-blue-500 underline"
+              (click)="fetchTransactions(client.client_id)"
+              >Fetch Transactions</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pagination -->
+    <div class="mt-4">
+      <button
+        class="border rounded px-3 py-1"
+        [disabled]="currentPage === 1"
+        (click)="onPageChange(currentPage - 1)"
+      >
+        Previous
+      </button>
+      <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+      <button
+        class="border rounded px-3 py-1"
+        [disabled]="currentPage === totalPages"
+        (click)="onPageChange(currentPage + 1)"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  

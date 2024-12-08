@@ -11,8 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     CommonModule,
     HttpClientModule
-
   ],
+  
   templateUrl: './transaction.component.html',
   styleUrl: './transaction.component.scss'
 })

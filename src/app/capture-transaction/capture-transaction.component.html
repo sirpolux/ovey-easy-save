@@ -1,0 +1,94 @@
+<div class="max-w-4xl mx-auto p-6 bg-gray-50 shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Capture Transaction</h2>
+  
+    <p class="mb-6 text-gray-600">
+      Experience the power of saving with our <span class="text-blue-500 font-semibold">Smart Savings</span> platform. Track and manage transactions efficiently, ensuring every penny counts!
+    </p>
+  
+    <form (ngSubmit)="submitTransaction()" class="space-y-4">
+      <!-- Card Number -->
+      <div>
+        <label for="card_no" class="block text-sm font-medium text-gray-600 mb-1">Card Number</label>
+        <input
+          id="card_no"
+          [(ngModel)]="transaction.card_no"
+          name="card_no"
+          type="text"
+          (input)="onCardNoChange($event)"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter card number"
+          required
+        />
+      </div>
+  
+      <!-- Client Name (Read-only) -->
+      <div>
+        <label for="client_name" class="block text-sm font-medium text-gray-600 mb-1">Client Name</label>
+        <input
+          id="client_name"
+          [value]="clientName || 'Not found'"
+          class="w-full border border-gray-300 p-2 rounded-md bg-gray-100"
+          readonly
+        />
+      </div>
+  
+      <!-- Amount -->
+      <div>
+        <label for="amount" class="block text-sm font-medium text-gray-600 mb-1">Amount</label>
+        <input
+          id="amount"
+          [(ngModel)]="transaction.amount"
+          name="amount"
+          type="number"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter amount"
+          required
+        />
+      </div>
+  
+      <!-- Transaction Type -->
+      <div>
+        <label for="transaction_type" class="block text-sm font-medium text-gray-600 mb-1">Transaction Type</label>
+        <select
+          id="transaction_type"
+          [(ngModel)]="transaction.transaction_type"
+          name="transaction_type"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="" disabled>Select transaction type</option>
+          <option value="credit">Credit</option>
+          <option value="debit">Debit</option>
+        </select>
+      </div>
+  
+      <!-- Purpose -->
+      <div>
+        <label for="purpose" class="block text-sm font-medium text-gray-600 mb-1">Purpose</label>
+        <input
+          id="purpose"
+          [(ngModel)]="transaction.purpose"
+          name="purpose"
+          type="text"
+          class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter purpose"
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+          Submit Transaction
+        </button>
+      </div>
+    </form>
+  
+    <!-- Success Message -->
+    <p *ngIf="successMessage" class="text-green-500 font-semibold mt-4">{{ successMessage }}</p>
+    <p *ngIf="balance !== null" class="text-gray-800 mt-2">New Balance: <span class="font-bold">{{ balance }}</span></p>
+  
+    <!-- Error Message -->
+    <p *ngIf="errorMessage" class="text-red-500 font-semibold mt-4">{{ errorMessage }}</p>
+  </div>
+  
