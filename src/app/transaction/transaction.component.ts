@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule
   ],
-  
+
   templateUrl: './transaction.component.html',
   styleUrl: './transaction.component.scss'
 })
@@ -24,6 +24,8 @@ export class TransactionComponent {
   search: string = '';
   sortBy: string = '';
   sortOrder: string = '';
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   constructor(private transactionService: TransactionService) {}
 
@@ -49,6 +51,11 @@ export class TransactionComponent {
         console.error('Error fetching transactions:', error);
       }
     );
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.fetchTransactions();
   }
 
 }

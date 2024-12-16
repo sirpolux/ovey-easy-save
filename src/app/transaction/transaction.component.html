@@ -88,9 +88,23 @@
     </table>
   
     <!-- Pagination Info -->
-    <div class="mt-6">
-      <p>Total Transactions: {{ pagination?.total }}</p>
-      <p>Page: {{ pagination?.current_page }} of {{ pagination?.last_page }}</p>
+     <!-- Pagination -->
+     <div class="mt-4">
+      <button
+        class="border rounded px-3 py-1"
+        [disabled]="currentPage === 1"
+        (click)="onPageChange(currentPage - 1)"
+      >
+        Previous
+      </button>
+      <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+      <button
+        class="border rounded px-3 py-1"
+        [disabled]="currentPage === totalPages"
+        (click)="onPageChange(currentPage + 1)"
+      >
+        Next
+      </button>
     </div>
   </div>
   
