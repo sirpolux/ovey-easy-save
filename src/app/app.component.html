@@ -1,16 +1,34 @@
 <div class="w-full" >
   <div >
-    <div class="w-full flex justify-center items-center">
+    <!-- <div class="w-full flex justify-center items-center">
       <div class="flex justify-end gap-4 py-2 px-4 max-w-[1280px]">
         <div class="flex flex-col justify-between">
           <h1 class="text-3xl font-extrabold">Ovey<span class="text-blue-700">Easy</span>Save</h1>
           <span>Saving made easy</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <app-menu></app-menu>
-    <div class="container mx-auto">
+    <header class="relative bg-gradient-to-r from-gray-800 via-gray-700 to-gray-500 text-white py-10">
+      <div class="container mx-auto flex flex-row items-center space-y-4 justify-center gap-4">
+        <!-- Logo -->
+        <img src="https://via.placeholder.com/80" alt="Logo" class="h-20 w-20 rounded-full shadow-xl border-4 border-white">
+        
+        <!-- Motto -->
+        <h1 class="text-3xl md:text-5xl font-extrabold drop-shadow-lg">
+          Saving Made Easy
+        </h1>
+  
+        <!-- Decorative Shapes -->
+        <div class="absolute top-0 left-0 w-24 h-24 bg-white bg-opacity-20 rounded-full blur-xl -z-10"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 bg-white bg-opacity-20 rounded-full blur-xl -z-10"></div>
+      </div>
+    </header>
+
+
+
+<app-menu></app-menu>
+    <div class=" w-full ">
       <router-outlet />
     </div>
   </div>

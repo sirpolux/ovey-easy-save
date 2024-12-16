@@ -1,0 +1,29 @@
+/* Slide-in animation */
+@keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Slide-out animation */
+  @keyframes slideOut {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+  
+  /* Apply the animations */
+  .menu-slide-in {
+    animation: slideIn 0.3s ease-in-out forwards;
+  }
+  
+  .menu-slide-out {
+    animation: slideOut 0.3s ease-in-out forwards;
+  }
+  
