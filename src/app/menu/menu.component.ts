@@ -25,15 +25,39 @@ export class MenuComponent {
     this.active_tabs=StandardMenuService.active_tabs;
   }
 
-  
 
-  toggleMenu(){
+  ngOnInit(): void {
+    // Fetch the menu button and mobile menu elements
+    const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    if(mobileMenu){
-      mobileMenu.classList.toggle('hidden');
-    
+
+    if (menuBtn && mobileMenu) {
+      // Toggle menu visibility on button click
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close menu when a link is clicked
+      const menuLinks = mobileMenu.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    } else {
+      console.error('Menu button or mobile menu element not found!');
     }
   }
+
+  
+
+  // toggleMenu(){
+  //   const mobileMenu = document.getElementById('mobile-menu');
+  //   if(mobileMenu){
+  //     mobileMenu.classList.toggle('hidden');
+    
+  //   }
+  // }
 
   
 }
