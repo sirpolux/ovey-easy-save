@@ -31,15 +31,18 @@ export class LoginComponent {
         // Store user and token
         this.authService.storeAuthData(user, token);
         this.standardMenuService.updateActiveItems('loggedIn',true);
+        this.errorMessage="";
         // Redirect to a different page after successful login
         this.router.navigate(['/transactions']);
       },
       (error) => {
         console.log(error);
         if (error.error && error.error.message === 'Invalid credentials') {
-          alert('Invalid credentials');
+          this.errorMessage = error.error.message;
+          //alert('Invalid credentials');
         } else {
-          alert('An error occurred. Please try again.');
+          this.errorMessage = "An error occured, please try again or call suport"
+          //alert('An error occurred. Please try again.');
         }
       }
     );
