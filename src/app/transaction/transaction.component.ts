@@ -38,7 +38,8 @@ export class TransactionComponent {
     const params = {
       search: this.search,       // From user input
       sort_by: this.sortBy,      // From user selection
-      sort_order: this.sortOrder // From user selection
+      sort_order: this.sortOrder, // From user selection
+      page:this.currentPage
     };
 
     // Call the service with params
@@ -53,9 +54,11 @@ export class TransactionComponent {
     );
   }
 
-  onPageChange(page: number): void {
+  changePage(page: number): void {
+    console.log(page);
     this.currentPage = page;
     this.fetchTransactions();
   }
+
 
 }

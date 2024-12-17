@@ -1,5 +1,5 @@
-<div class="container mx-auto mt-5">
-    <h1 class="text-2xl font-bold mb-4">Clients</h1>
+<div class="mt-5 px-3 md:px-7 text-gray-800 text-[0.8rem]">
+    <h1 class="text-2xl font-bold mb-4">Clients Transactions</h1>
   
     <!-- Search Box -->
     <div class="mb-4">
@@ -32,9 +32,9 @@
           <td>
             <a
               href="javascript:void(0)"
-              class="text-blue-500 underline"
+              class="text-white px-3 py-2 rounded  bg-blue-500"
               (click)="fetchTransactions(client.client_id)"
-              >Fetch Transactions</a
+              >Fetch Transactions  <span class="ml-2"></span> <i class="fas fa-folder-open"></i> </a
             >
           </td>
         </tr>

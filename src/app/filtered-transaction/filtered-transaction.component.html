@@ -48,7 +48,15 @@
             <!-- <td class="px-4 py-2 border-t border-gray-200">{{ transaction.id }}</td> -->
             <td class="px-4 py-2 border-t border-gray-200">{{ transaction.date_paid }}</td>
             <td class="px-4 py-2 border-t border-gray-200">{{ transaction.amount }}</td>
-            <td class="px-4 py-2 border-t border-gray-200">{{ transaction.transaction_type }}</td>
+            <td 
+            class="px-4 py-2 border-t border-gray-200"
+            [ngClass]="{
+              'text-green-500': transaction.transaction_type === 'credit',
+              'text-red-500': transaction.transaction_type === 'debit'
+            }">
+            {{ transaction.transaction_type }}
+          </td>
+          
             <td class="px-4 py-2 border-t border-gray-200">{{ transaction.purpose }}</td>
           </tr>
           <tr *ngIf="transactions.length === 0">

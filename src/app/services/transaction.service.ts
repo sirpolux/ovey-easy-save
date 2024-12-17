@@ -30,6 +30,7 @@ export class TransactionService {
     if (params.search) queryParams = queryParams.append('search', params.search);
     if (params.sort_by) queryParams = queryParams.append('sort_by', params.sort_by);
     if (params.sort_order) queryParams = queryParams.append('sort_order', params.sort_order);
+    if(params.page) queryParams= queryParams.append('page',params.page);
 
     // Make GET request with headers and query params
     return this.http.get<any>(`${this.apiUrl}/transactions`, { headers, params: queryParams });

@@ -1,4 +1,4 @@
-<div class="container mx-auto mt-8">
+<div class="mt-4 p-3 md:px-6">
     <!-- Page Header -->
     <h1 class="text-3xl font-bold mb-6 text-center">Transaction Management</h1>
     <p class="text-gray-600 text-center mb-8">
@@ -9,7 +9,7 @@
     <form (ngSubmit)="fetchTransactions()" class="mb-8 bg-white p-6 rounded-lg shadow-md">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Search Field -->
-        <div>
+        <!-- <div>
           <label for="search" class="block text-gray-700 font-bold mb-2">Search:</label>
           <input 
             type="text" 
@@ -18,7 +18,7 @@
             name="search"
             placeholder="Search by client name or card number" 
             class="w-full border-gray-300 rounded-lg shadow-sm p-2">
-        </div>
+        </div> -->
   
         <!-- Sort By Field -->
         <div>
@@ -49,60 +49,76 @@
           </select>
         </div>
       </div>
-      <div class="mt-6 text-center">
+      <div class="mt-6 text-center flex gap-4 justify-center">
         <button 
           type="submit" 
           class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700">
           Apply Filters
         </button>
+
+        <button 
+          type="submit" 
+          class="bg-red-400  text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-700">
+          Capture Transaction
+        </button>    
       </div>
     </form>
-  
     <!-- Transaction Table -->
-    <table class="min-w-full border-collapse border border-gray-200">
-      <thead>
-        <tr>
-          <th class="border border-gray-200 p-2 text-left">Client Name</th>
-          <th class="border border-gray-200 p-2 text-left">Card No</th>
-          <th class="border border-gray-200 p-2 text-left">Amount</th>
-          <th class="border border-gray-200 p-2 text-left">Date Paid</th>
-          <th class="border border-gray-200 p-2 text-left">Transaction Type</th>
-          <th class="border border-gray-200 p-2 text-left">Purpose</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let transaction of transactions">
-          <td class="border border-gray-200 p-2">{{ transaction.client_name }}</td>
-          <td class="border border-gray-200 p-2">{{ transaction.card_no }}</td>
-          <td class="border border-gray-200 p-2">{{ transaction.amount }}</td>
-          <td class="border border-gray-200 p-2">{{ transaction.date_paid }}</td>
-          <td class="border border-gray-200 p-2">{{ transaction.transaction_type }}</td>
-          <td class="border border-gray-200 p-2">{{ transaction.purpose }}</td>
-        </tr>
-        <tr *ngIf="transactions.length === 0">
-          <td colspan="6" class="text-center text-gray-500 py-4">
-            No transactions found. Please adjust your filters.
+     <div class="width-screen overflow-auto text-[0.7rem]">
+      <table class="min-w-full border-collapse border border-gray-200  table-auto">
+        <thead>
+          <tr>
+            <th class="border border-gray-200 p-2 text-left">Client Name</th>
+            <th class="border border-gray-200 p-2 text-left">Card No</th>
+            <th class="border border-gray-200 p-2 text-left">Amount</th>
+            <th class="border border-gray-200 p-2 text-left">Date Paid</th>
+            <th class="border border-gray-200 p-2 text-left">Transaction Type</th>
+            <th class="border border-gray-200 p-2 text-left">Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions">
+            <td class="border border-gray-200 p-2">{{ transaction.client_name }}</td>
+            <td class="border border-gray-200 p-2">{{ transaction.card_no }}</td>
+            <td class="border border-gray-200 p-2">{{ transaction.amount }}</td>
+            <td class="border border-gray-200 p-2">{{ transaction.date_paid }}</td>
+
+            <td 
+            class="border border-gray-200 p-2"
+            [ngClass]="{
+              'text-green-500': transaction.transaction_type === 'credit',
+              'text-red-500': transaction.transaction_type === 'debit'
+            }">
+            {{ transaction.transaction_type }}
           </td>
-        </tr>
-      </tbody>
-    </table>
+          
+
+            <td class="border border-gray-200 p-2">{{ transaction.purpose }}</td>
+          </tr>
+          <tr *ngIf="transactions.length === 0">
+            <td colspan="6" class="text-center text-gray-500 py-4">
+              No transactions found. Please adjust your filters.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+     </div>
   
-    <!-- Pagination Info -->
-     <!-- Pagination -->
-     <div class="mt-4">
-      <button
-        class="border rounded px-3 py-1"
-        [disabled]="currentPage === 1"
-        (click)="onPageChange(currentPage - 1)"
-      >
+    <div class="flex items-center justify-between mt-6">
+      <button 
+        [disabled]="!pagination.prev_page_url" 
+        (click)="changePage(pagination.current_page - 1)" 
+        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
         Previous
       </button>
-      <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
-      <button
-        class="border rounded px-3 py-1"
-        [disabled]="currentPage === totalPages"
-        (click)="onPageChange(currentPage + 1)"
-      >
+      <span class="text-gray-600 font-semibold">
+        Page {{ pagination.current_page }} of {{ pagination.last_page }}
+      </span>
+      <button 
+        [disabled]="!pagination.next_page_url" 
+        (click)="changePage(pagination.current_page + 1)" 
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
         Next
       </button>
     </div>
