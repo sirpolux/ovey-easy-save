@@ -3,6 +3,7 @@ import { TransactionService } from '../services/transaction.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Route, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-transaction',
@@ -10,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterLink
   ],
 
   templateUrl: './transaction.component.html',

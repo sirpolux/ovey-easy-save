@@ -40,8 +40,10 @@ export class CaptureTransactionComponent {
         next: (response) => {
           if (response.status) {
             this.clientName = response.name;
+            this.errorMessage="";
           } else {
             this.errorMessage = response.msg;
+            this.clientName="";
           }
         },
         error: () => {
