@@ -3,7 +3,7 @@ import { ClientService } from '../services/client.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
   imports: [
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterLink
 
   ],
   styleUrls: ['./client.component.scss'],
