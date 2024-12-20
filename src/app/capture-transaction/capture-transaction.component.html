@@ -1,4 +1,7 @@
-<div class="max-w-4xl mx-2  md:mx-auto p-6 md:p-10 shadow-md rounded-lg mt-8">
+<div class="pb-24">
+
+
+<div class="max-w-4xl mx-2  md:mx-auto p-6 md:p-10 shadow-md rounded-lg mt-8 ">
     <h2 class="text-2xl font-bold mb-4 text-gray-800">Capture Transaction</h2>
   
     <p class="mb-6 text-gray-600">
@@ -78,8 +81,8 @@
       <div class="mt-4">
         <button
           type="submit"
-          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
-          Submit Transaction
+          class="w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+          Submit Transaction <span class="ml-2"> <i class="fas fa-piggy-bank"> </i> </span>
         </button>
       </div>
     </form>
@@ -91,4 +94,4 @@
     <!-- Error Message -->
     <p *ngIf="errorMessage" class="text-red-500 font-semibold mt-4">{{ errorMessage }}</p>
   </div>
-  
+</div>

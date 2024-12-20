@@ -1,0 +1,30 @@
+
+<header class="bg-white shadow-md w-full z-10">
+    <nav class="bg-white text-gray-700 py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center space-x-4"></div>
+  
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-4 font-normal">
+          <a routerLink="/" class="text-gray-500 hover:text-gray-950 border px-3 py-1 rounded">Home</a>
+          <a routerLink="/login" class="text-gray-500 hover:text-gray-950 border px-3 py-1 rounded">Login</a>
+        </div>
+  
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="focus:outline-none">
+            <svg class="w-6 h-6 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-600">
+        <a routerLink="/" class="block text-white px-4 py-2">Home</a>
+        <a  routerLink="/login" class="block text-white px-4 py-2">Login</a>
+      </div>
+    </nav>
+  </header>

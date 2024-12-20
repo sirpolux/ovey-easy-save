@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StandardMenuService } from '../services/standard-menu.service';
+import { UnAuthenticatedMenuComponent } from "../un-authenticated-menu/un-authenticated-menu.component";
+//import { UnAuthenticatedMenuComponent } from '../un-authenticated-menu/un-authenticated-menu.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, UnAuthenticatedMenuComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -47,4 +49,5 @@ export class LoginComponent {
       }
     );
   }
+  
 }

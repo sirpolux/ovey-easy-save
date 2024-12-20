@@ -55,6 +55,10 @@ export class AuthService {
       localStorage.removeItem(this.tokenKey);
     }
   }
+  
+  logout(): Observable<any> {
+    return this.http.post(`${BASE_URL}/auth/logout`, {});
+  }
 }
 
 
