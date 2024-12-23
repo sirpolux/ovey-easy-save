@@ -21,7 +21,7 @@ export class AuthService {
 
   // Initialize CSRF protection by fetching the CSRF cookie
   initializeCsrfProtection(): Observable<any> {
-    return this.http.get(`${BASE_URL}/sanctum/csrf-cookie`, {
+    return this.http.get('https://apis.oveysaving.com.ng/sanctum/csrf-cookie', {
       withCredentials: true,
     });
   }

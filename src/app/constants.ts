@@ -1,1 +1,1 @@
-export const BASE_URL = "https://apis.ov.oveysaving.com.ng/api"
+export const BASE_URL = "https://apis.oveysaving.com.ng/api"
