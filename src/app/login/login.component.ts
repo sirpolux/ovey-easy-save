@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StandardMenuService } from '../services/standard-menu.service';
 import { UnAuthenticatedMenuComponent } from "../un-authenticated-menu/un-authenticated-menu.component";
-//import { UnAuthenticatedMenuComponent } from '../un-authenticated-menu/un-authenticated-menu.component';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +21,30 @@ export class LoginComponent {
 
   private menuService = StandardMenuService;
 
-  constructor(private authService: AuthService, private router: Router, private standardMenuService:StandardMenuService) {}
+  constructor(private authService: AuthService, private router: Router, private standardMenuService: StandardMenuService) {}
 
-  login(): void {
+  // Method to initialize CSRF token and then call login
+  onSubmit(): void {
+    this.initializeCsrfToken();
+    this.login();
+  }
+
+  // Initialize CSRF token before submitting the login request
+  private initializeCsrfToken(): void {
+    this.authService.initializeCsrfProtection().subscribe({
+      next: () => {
+        // Once CSRF token is initialized, we can proceed with login
+        this.login();
+      },
+      error: (err) => {
+        console.error('CSRF Token initialization failed', err);
+        this.errorMessage = 'Unable to initialize CSRF token. Please try again later.';
+      }
+    });
+  }
+
+  // Perform login after CSRF token is initialized
+  private login(): void {
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
         // Extract user and token from response
@@ -32,8 +52,8 @@ export class LoginComponent {
 
         // Store user and token
         this.authService.storeAuthData(user, token);
-        this.standardMenuService.updateActiveItems('loggedIn',true);
-        this.errorMessage="";
+        this.standardMenuService.updateActiveItems('loggedIn', true);
+        this.errorMessage = "";
         // Redirect to a different page after successful login
         this.router.navigate(['/transactions']);
       },
@@ -41,13 +61,10 @@ export class LoginComponent {
         console.log(error);
         if (error.error && error.error.message === 'Invalid credentials') {
           this.errorMessage = error.error.message;
-          //alert('Invalid credentials');
         } else {
-          this.errorMessage = "An error occured, please try again or call suport"
-          //alert('An error occurred. Please try again.');
+          this.errorMessage = "An error occurred, please try again or call support.";
         }
       }
     );
   }
-  
 }

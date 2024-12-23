@@ -3,15 +3,17 @@ import { ClientService } from '../services/client.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from "../menu/menu.component";
 
 @Component({
   selector: 'app-create-client',
   standalone:true,
-  imports:[
+  imports: [
     FormsModule,
     CommonModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    MenuComponent
+],
   templateUrl: './create-client.component.html',
 })
 export class CreateClientComponent {

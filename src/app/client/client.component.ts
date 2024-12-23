@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
+import { MenuComponent } from "../menu/menu.component";
 
 
 @Component({
@@ -14,9 +15,9 @@ import { Router, RouterLink } from '@angular/router';
     FormsModule,
     CommonModule,
     HttpClientModule,
-    RouterLink
-
-  ],
+    RouterLink,
+    MenuComponent
+],
   styleUrls: ['./client.component.scss'],
 })
 export class ClientComponent implements OnInit {

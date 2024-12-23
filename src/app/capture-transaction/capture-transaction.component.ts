@@ -3,16 +3,18 @@ import { TransactionService } from '../services/transaction.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from "../menu/menu.component";
 
 
 @Component({
   selector: 'app-capture-transaction',
   standalone:true,
-  imports:[
+  imports: [
     FormsModule,
     CommonModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    MenuComponent
+],
   templateUrl: './capture-transaction.component.html',
 })
 export class CaptureTransactionComponent {

@@ -4,6 +4,7 @@ import { TransactionService } from '../services/transaction.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from "../menu/menu.component";
 
 @Component({
   selector: 'app-filtered-transactions',
@@ -12,8 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     FormsModule,
     CommonModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    MenuComponent
+],
   styleUrls: ['./filtered-transaction.component.scss'],
 })
 export class FilteredTransactionComponent implements OnInit {

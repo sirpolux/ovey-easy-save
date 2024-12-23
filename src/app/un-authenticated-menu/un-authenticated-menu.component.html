@@ -9,6 +9,7 @@
         <div class="hidden md:flex space-x-4 font-normal">
           <a routerLink="/" class="text-gray-500 hover:text-gray-950 border px-3 py-1 rounded">Home</a>
           <a routerLink="/login" class="text-gray-500 hover:text-gray-950 border px-3 py-1 rounded">Login</a>
+          <a routerLink="/transactions-guest" class="text-gray-500 hover:text-gray-950 border px-3 py-1 rounded">Transactions</a>
         </div>
   
         <!-- Mobile Menu Button -->
@@ -22,9 +23,19 @@
       </div>
   
       <!-- Mobile Dropdown Menu -->
-      <div id="mobile-menu" class="hidden md:hidden bg-gray-600">
-        <a routerLink="/" class="block text-white px-4 py-2">Home</a>
-        <a  routerLink="/login" class="block text-white px-4 py-2">Login</a>
+      <div id="mobile-menu" class="hidden md:hidden bg-white p-2  absolute z-20 right-0 w-full border-t border-b shadow">
+        <div class="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded ">
+            <a routerLink="/" class="block text-gray-700 px-4 py-2">Home</a>
+        </div>
+        <div class="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded mt-1 ">
+            <a  routerLink="/login" class="block text-gray-700 px-4 py-2">Login</a>
+        </div>
+        <div class="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded mt-1 ">
+            <a  routerLink="/transactions-guest" class="block text-gray-700 px-4 py-2">Transactions</a>
+        </div>
+        <div class="mt-4 mb-6">
+            <p class="text-center font-sans font-semibold text-lg">Ovey savings </p>
+        </div>
       </div>
     </nav>
   </header>

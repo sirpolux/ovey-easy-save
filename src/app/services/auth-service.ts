@@ -19,9 +19,18 @@ export class AuthService {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
+  // Initialize CSRF protection by fetching the CSRF cookie
+  initializeCsrfProtection(): Observable<any> {
+    return this.http.get(`${BASE_URL}/sanctum/csrf-cookie`, {
+      withCredentials: true,
+    });
+  }
+
   // Login API call
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${BASE_URL}/auth/login`, { email, password });
+    return this.http.post(`${BASE_URL}/auth/login`, { email, password }, {
+      withCredentials: true, // Ensure cookies are sent with the request
+    });
   }
 
   // Store token and user in localStorage
@@ -55,53 +64,11 @@ export class AuthService {
       localStorage.removeItem(this.tokenKey);
     }
   }
-  
+
+  // Logout API call
   logout(): Observable<any> {
-    return this.http.post(`${BASE_URL}/auth/logout`, {});
+    return this.http.post(`${BASE_URL}/auth/logout`, {}, {
+      withCredentials: true, // Ensure cookies are sent with the request
+    });
   }
 }
-
-
-
-
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-// import { BASE_URL } from '../constants';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class AuthService {
-//   private tokenKey = 'authToken'; // Key for storing the token
-//   private userKey = 'authUser'; // Key for storing the user email
-
-//   constructor(private http: HttpClient) {}
-
-//   // Login API call
-//   login(email: string, password: string): Observable<any> {
-//     return this.http.post(`${BASE_URL}/auth/login`, { email, password });
-//   }
-
-//   // Store token and user in localStorage
-//   storeAuthData(user: string, token: string): void {
-//     localStorage.setItem(this.userKey, user);
-//     localStorage.setItem(this.tokenKey, token);
-//   }
-
-//   // Retrieve token from localStorage
-//   getToken(): string | null {
-//     return localStorage.getItem(this.tokenKey);
-//   }
-
-//   // Retrieve user from localStorage
-//   getUser(): string | null {
-//     return localStorage.getItem(this.userKey);
-//   }
-
-//   // Clear token and user from localStorage
-//   clearAuthData(): void {
-//     localStorage.removeItem(this.userKey);
-//     localStorage.removeItem(this.tokenKey);
-//   }
-// }

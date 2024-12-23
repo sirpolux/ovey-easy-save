@@ -6,6 +6,7 @@ import { ClientComponent } from './client/client.component';
 import { FilteredTransactionComponent } from './filtered-transaction/filtered-transaction.component';
 import { CreateClientComponent } from './create-client/create-client.component';
 import { CaptureTransactionComponent } from './capture-transaction/capture-transaction.component';
+import { TransactionsGuestComponent } from './transactions-guest/transactions-guest.component';
 
 export const routes: Routes = [
     
@@ -48,6 +49,10 @@ export const routes: Routes = [
     {
         path:'transactions-credit',
         component:CaptureTransactionComponent
+    },
+    {
+        path:'transactions-guest',
+        component:TransactionsGuestComponent
     }
 
 ];

@@ -1,3 +1,16 @@
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-transactions-guest',
+//   standalone: true,
+//   imports: [],
+//   templateUrl: './transactions-guest.component.html',
+//   styleUrl: './transactions-guest.component.scss'
+// })
+// export class TransactionsGuestComponent {
+
+// }
+
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../services/transaction.service';
 import { FormsModule } from '@angular/forms';
@@ -5,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Route, Router, RouterLink } from '@angular/router';
 import { MenuComponent } from "../menu/menu.component";
+import { UnAuthenticatedMenuComponent } from "../un-authenticated-menu/un-authenticated-menu.component";
 
 @Component({
   selector: 'app-transaction',
@@ -14,13 +28,14 @@ import { MenuComponent } from "../menu/menu.component";
     CommonModule,
     HttpClientModule,
     RouterLink,
-    MenuComponent
+    MenuComponent,
+    UnAuthenticatedMenuComponent
 ],
 
-  templateUrl: './transaction.component.html',
-  styleUrl: './transaction.component.scss'
+  templateUrl: './transactions-guest.component.html',
+  styleUrl: './transactions-guest.component.scss'
 })
-export class TransactionComponent {
+export class TransactionsGuestComponent {
   transactions: any[] = [];
   pagination: any;
 
