@@ -13,21 +13,51 @@ export class ClientService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   private apiUrl = `${BASE_URL}/clients`;
+  // private getHeaders(): HttpHeaders {
+  //   const token = this.authService.getToken();
+  //   // Get the XSRF-TOKEN cookie value
+  //   const xsrfToken = this.getCookie('XSRF-TOKEN');
+  //   return new HttpHeaders({
+  //     Authorization: `Bearer ${token}`,
+  //     'Content-Type': 'application/json',
+
+  //   });
+  // }
+
   private getHeaders(): HttpHeaders {
     const token = this.authService.getToken();
-    return new HttpHeaders({
+
+    // Get the XSRF-TOKEN cookie value
+    const xsrfToken = this.getCookie('XSRF-TOKEN');
+
+    const headersConfig: { [header: string]: string } = {
       Authorization: `Bearer ${token}`,
-    });
+      'Content-Type': 'application/json'
+
+    };
+
+    // Add X-XSRF-TOKEN header if XSRF-TOKEN exists
+    if (xsrfToken) {
+      headersConfig['X-XSRF-TOKEN'] = decodeURIComponent(xsrfToken);
+    }
+
+    return new HttpHeaders(headersConfig);
+  }
+
+   // Utility to get cookie value
+   private getCookie(name: string): string | null {
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+      const [key, value] = cookie.split('=');
+      if (key === name) {
+        return value;
+      }
+    }
+    return null;
   }
 
   createClient(payload: any): Observable<any> {
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    });
-
-    return this.http.post<any>(this.apiUrl, payload, { headers }).pipe(
+    return this.http.post<any>(this.apiUrl, payload, { headers:this.getHeaders(), withCredentials:true }).pipe(
       catchError((error) => {
         return throwError(() => error);
       })
@@ -43,8 +73,9 @@ export class ClientService {
       .set('page', page.toString());
 
     return this.http.get(`${BASE_URL}/clients`, {
-      headers: this.getHeaders(),
+      headers: this.getHeaders(), 
       params,
+      withCredentials:true
     });
   }
 
@@ -52,6 +83,7 @@ export class ClientService {
     return this.http.get(`${BASE_URL}/transactions/client`, {
       headers: this.getHeaders(),
       params: new HttpParams().set('client_id', client_id.toString()),
+      withCredentials:true
     });
   }
 
@@ -70,6 +102,7 @@ export class ClientService {
     return this.http.get(`${BASE_URL}/transactions/client`, {
       headers: this.getHeaders(),
       params,
+      withCredentials:true
     });
   }
 

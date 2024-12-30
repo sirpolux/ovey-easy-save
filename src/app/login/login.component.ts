@@ -26,7 +26,6 @@ export class LoginComponent {
   // Method to initialize CSRF token and then call login
   onSubmit(): void {
     this.initializeCsrfToken();
-    this.login();
   }
 
   // Initialize CSRF token before submitting the login request
